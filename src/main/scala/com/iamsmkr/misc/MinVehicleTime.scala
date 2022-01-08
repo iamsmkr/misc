@@ -51,7 +51,7 @@ package com.iamsmkr.misc
 object MinVehicleTime extends App {
 
   def findMinVehicleTime(pw: Array[Int], vc: Array[Int]): Int = {
-    val r = vc.filter(_ > 0).map(c => pw.filter(_ <= c).sorted.reverse)
+    val r = vc.filter(_ > 0).map(c => pw.filter(_ <= c).sorted.reverse).filter(_.length > 0)
 
     var shipped = Array[Int]()
     var trips = 0
@@ -69,6 +69,8 @@ object MinVehicleTime extends App {
     trips + returnTrips
   }
 
+  assert(findMinVehicleTime(Array(10, 10, 10, 10), Array(100, 100)) == 3)
+  assert(findMinVehicleTime(Array(10, 10, 10, 10), Array(100)) == 7)
   assert(findMinVehicleTime(Array(10, 2, 16, 19), Array(29, 5)) == 5)
   assert(findMinVehicleTime(Array(10, 2, 16, 19), Array(29, 25)) == 3)
   assert(findMinVehicleTime(Array(10, 2, 16, 19), Array(29, 25, 20, 5)) == 1)

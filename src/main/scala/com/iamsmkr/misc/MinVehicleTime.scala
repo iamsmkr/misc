@@ -84,6 +84,8 @@ object MinVehicleTime extends App {
     val shippable = pw.filter(_ <= vc.max)
 
     while ((shippable diff shipped).nonEmpty) {
+      // We can utilize `shippedPerIter` to further reduce the required number of iterations by updating inner ArrayBuffers
+      // and then filtering for non empty ArrayBuffers in subsequent iterations
       val k = r.map(_.--=(shippedPerIter)).filter(_.nonEmpty)
 
       shippedPerIter = Array[Int]()
